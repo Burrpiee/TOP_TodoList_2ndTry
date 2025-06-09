@@ -1,2 +1,1 @@
-# webpack_template
-Webpack template for starting new projects
+# 2nd attempt on the Todo List Project
