@@ -1,0 +1,230 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    line-height: 1.5;
+    height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'EB Garamond', serif;
+}
+
+input, textarea, select {
+    font: inherit;
+}
+
+hr {
+    margin-bottom: 1rem;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}
+
+.sidebar {
+    padding: 1.5rem;
+    height: 100vh;
+}
+
+.content {
+    padding: 1.5rem;
+    height: 100vh;
+}
+
+li {
+    list-style-type: none;
+}
+
+.content-header,
+.projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Form lines formatting */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Add project form */
+#add-project-container {
+    padding: 12px;
+    border-radius: 8px;
+    background-color: lightgrey;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-form-action {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+
+    button {
+        background-color: white;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+    }
+}
+
+.projects-list {
+    margin-bottom: 1.5rem;
+}
+
+
+
+/* Add todo form */
+#add-todo-container {
+    margin-top: 1rem;
+    padding: 24px;
+    max-width: 800px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background-color: lightgrey;
+
+    #todo-title {
+        max-width: 200px;
+    }
+
+}
+
+.todo-form-action {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    button {
+        background-color: white;
+        width: 72px;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        margin-top: 1rem;
+    }
+}
+
+/* Show form buttons */
+.add-button {
+    border: 0;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    font-size: 1.2rem;
+
+    &:hover {
+        background-color: lightgray;
+    }
+}
+
+/* Add details form */
+.todo-details {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: lightgrey;
+    height: 100%;
+}
+
+.details-content {
+    padding: 36px;
+    width: 450px;
+}
+
+.checklist-section {
+    margin-top: 24px;
+}
+
+.checklist-header {
+    margin-bottom: 12px;
+}
+
+.add-checklist-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.25rem;
+
+    input[type="text"] {
+        padding: 0.3rem;
+        flex: 1;
+    }
+}
+
+.checklist-form-action {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    button {
+        background-color: white;
+        width: fit-content;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        margin-top: 1rem;
+    }
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Form buttons formatting */
+.cancel-btn:hover,
+.submit-btn:hover {
+    background-color: darkgray;
+}
+
+.close-button {
+    border: 0;
+    background: 0;
+    cursor: pointer;
+    font-size: 1.5rem;
+    
+    &:hover {
+        color: red;
+    }
+}
+
+/* Hidden class */
+.hidden {
+    display: none !important;
+}
+
+/* Form input formatting */
+input[type="date"],
+textarea, select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+
+input[type="date"],
+select {
+    height: 2.5rem;
+}
+
+input[type="text"] {
+    border: 1px solid;
+    padding: 0.1rem;
+    border-radius: 4px;
+}
+
+textarea {
+    min-height: 100px;
+}
