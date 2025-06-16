@@ -1,4 +1,4 @@
-import { generateUniqueID } from "./utils/idGenerator";
+import generateUniqueID from "./utils/idGenerator";
 //Todo factory
 
 class Todo {

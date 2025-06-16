@@ -1,6 +1,6 @@
 //Generate unique ID for projects and todos using UUID ver 4
 
-export function generateUniqueID() {
+function generateUniqueID() {
     //Defaults to crypto.randomUUID()
     if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
         return crypto.randomUUID();
@@ -10,4 +10,6 @@ export function generateUniqueID() {
         const id = Date.now.toString(36) + Math.random().toString(36).slice(2);
         return id;
     }
-}
+};
+
+export default generateUniqueID;

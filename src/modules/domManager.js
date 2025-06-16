@@ -1,3 +1,5 @@
+import Project from "./project";
+import Todo from "./todo";
 //DOM manager
 
 //Private variable for dom elements
@@ -22,8 +24,29 @@ const init = () => {
 const setupEventListeners = () => {
     
     //Submission of Add Project Form
+    dom.addProjectForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const projectName = document.getElementById("project_name").value.trim();
+        const projectDesc = document.getElementById("project_descs").value.trim();
 
+        //If values are not empty add project
+    });
+
+    //Submission of Add Todo Form
+    dom.addTodoForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const title = document.getElementById("todo-title").value.trim();
+        const description = document.getElementById("todo-desc").value.trim();
+        const dueDate = document.getElementById("todo-due-date").value;
+        const priority = document.getElementById("todo-priority").value;
+        const notes = document.getElementById("todo-notes").value.trim();
+        const projectId = document.getElementById("todo-project").value;
+
+        //If values are not empty, add todo to project
+    });
 };
+
+
 
 export default {
     init,
