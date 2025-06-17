@@ -1,8 +1,10 @@
 import "./styles.css";
 import DomManager from "./modules/domManager";
+import TodoManager from "./modules/todoManager";
 
-//Initialize functions
+//Initialization steps
 DomManager.init();
+console.log(TodoManager.getAllProjects());
 
 //Form control
 

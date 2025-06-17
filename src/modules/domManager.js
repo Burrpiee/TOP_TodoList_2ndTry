@@ -1,5 +1,7 @@
 import Project from "./project";
 import Todo from "./todo";
+import todoManager from "./todoManager";
+import TodoManager from "./todoManager";
 //DOM manager
 
 //Private variable for dom elements
@@ -18,6 +20,8 @@ const cacheDomElements = () => {
 //Initialize the DOM
 const init = () => {
     cacheDomElements();
+    TodoManager.initialize();
+    renderProjects();
 };
 
 //Setup event listeners
@@ -29,7 +33,9 @@ const setupEventListeners = () => {
         const projectName = document.getElementById("project_name").value.trim();
         const projectDesc = document.getElementById("project_descs").value.trim();
 
-        //If values are not empty add project
+        if (projectName !== '') {
+            TodoManager.addProject();
+        }
     });
 
     //Submission of Add Todo Form
@@ -43,11 +49,36 @@ const setupEventListeners = () => {
         const projectId = document.getElementById("todo-project").value;
 
         //If values are not empty, add todo to project
+
+        if (title && dueDate !== '') {
+          //add todo to proj   
+        }
     });
 };
+
+//Rendering of projects in projects list
+const renderProjects = () => {
+    const projects = todoManager.getAllProjects();
+
+    dom.projectsList.innerHTML = ''; //Clear current list
+
+    projects.forEach(project => {
+        const projectItem = document.createElement('li');
+
+        //Create html item
+        projectItem.innerHTML = `
+        <div>${project.name}</div>
+        <button>x</button>`
+
+        projectItem.classList.add('project-list-item');
+        dom.projectsList.appendChild(projectItem);
+    });
+}
 
 
 
 export default {
     init,
+    setupEventListeners,
+    renderProjects,
 };

@@ -79,9 +79,36 @@ li {
     }
 }
 
+/* Projects list */
+.projects-header {
+    margin-bottom: 1rem;
+}
+
+.project-list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: gray;
+    border-radius: 8px;
+
+    button {
+        border: 0;
+        background-color: gray;
+        color: white;
+
+        &:hover {
+            color: red;
+        }
+    }
+}
+
 .projects-list {
     margin-bottom: 1.5rem;
 }
+
+
 
 
 

@@ -19,11 +19,11 @@ class Todo {
 
     updatePriority(newPriority) {
         this.priority = newPriority;
-    }
+    };
 
     updateDueDate(newDate) {
         this.dueDate = newDate;
-    }
+    };
 }
 
 export default Todo;
