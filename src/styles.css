@@ -79,6 +79,11 @@ li {
     }
 }
 
+.add-project-header {
+    margin-bottom: 8px;
+    text-decoration: underline;
+}
+
 /* Projects list */
 .projects-header {
     margin-bottom: 1rem;
@@ -89,9 +94,20 @@ li {
     justify-content: space-between;
     padding: 8px 12px;
     font-size: 1.2rem;
+    font-weight: 500;
     color: white;
     background-color: gray;
     border-radius: 8px;
+    margin-bottom: 8px;
+
+    &:hover {
+        background-color: darkgray;
+        color: black;
+
+        button {
+            background-color: darkgray;
+        }
+    }
 
     button {
         border: 0;
@@ -108,6 +124,15 @@ li {
     margin-bottom: 1.5rem;
 }
 
+/* Class for currently active project list item */
+.active {
+    background-color: darkgray;
+    color: black;
+
+    button {
+        background-color: darkgray;
+    }
+}
 
 
 
@@ -125,6 +150,12 @@ li {
         max-width: 200px;
     }
 
+}
+
+.todo-form-title {
+    font-size: 1.4rem;
+    text-decoration: underline;
+    margin-bottom: 12px;
 }
 
 .todo-form-action {

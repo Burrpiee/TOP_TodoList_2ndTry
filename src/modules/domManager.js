@@ -1,6 +1,5 @@
 import Project from "./project";
 import Todo from "./todo";
-import todoManager from "./todoManager";
 import TodoManager from "./todoManager";
 //DOM manager
 
@@ -20,6 +19,7 @@ const cacheDomElements = () => {
 //Initialize the DOM
 const init = () => {
     cacheDomElements();
+    setupEventListeners();
     TodoManager.initialize();
     renderProjects();
 };
@@ -31,11 +31,14 @@ const setupEventListeners = () => {
     dom.addProjectForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const projectName = document.getElementById("project_name").value.trim();
-        const projectDesc = document.getElementById("project_descs").value.trim();
+        const projectDesc = document.getElementById("project_desc").value.trim();
 
         if (projectName !== '') {
-            TodoManager.addProject();
+            TodoManager.addProject(projectName, projectDesc);
         }
+
+        renderProjects();
+        dom.addProjectForm.reset();
     });
 
     //Submission of Add Todo Form
@@ -58,22 +61,36 @@ const setupEventListeners = () => {
 
 //Rendering of projects in projects list
 const renderProjects = () => {
-    const projects = todoManager.getAllProjects();
+    const projects = TodoManager.getAllProjects();
 
     dom.projectsList.innerHTML = ''; //Clear current list
 
     projects.forEach(project => {
         const projectItem = document.createElement('li');
+        projectItem.classList.add('project-list-item');
+        projectItem.dataset.projectId = project.id;
 
         //Create html item
         projectItem.innerHTML = `
         <div>${project.name}</div>
-        <button>x</button>`
+        <button class = "project-delete-button">x</button>`;
 
-        projectItem.classList.add('project-list-item');
         dom.projectsList.appendChild(projectItem);
+
+        projectItem.addEventListener('click', (e) => {
+            if (e.target.classList.contains('project-delete-button')) {
+                if (confirm("Delete this project and all it's todos?")) {
+                    TodoManager.deleteProject(project.id);
+                    renderProjects();
+                }
+            }
+        });
     });
-}
+};
+
+const renderTodos = () => {
+
+};
 
 
 

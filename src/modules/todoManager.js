@@ -21,10 +21,15 @@ const addProject = (name, description) => {
     return project; 
 };
 
+//Delete project from project array
+const deleteProject = (projectId) => {
+    projects = projects.filter(project => project.id !== projectId);
+};
+
 //Return all projects in project array
 const getAllProjects = () => {
     return projects;
-}
+};
 
 
 
@@ -34,5 +39,6 @@ export default {
     initialize,
     addProject,
     getAllProjects,
+    deleteProject,
 
 };

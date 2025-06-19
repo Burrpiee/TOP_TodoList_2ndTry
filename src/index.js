@@ -4,7 +4,7 @@ import TodoManager from "./modules/todoManager";
 
 //Initialization steps
 DomManager.init();
-console.log(TodoManager.getAllProjects());
+
 
 //Form control
 
