@@ -26,19 +26,33 @@ const deleteProject = (projectId) => {
     projects = projects.filter(project => project.id !== projectId);
 };
 
+const getProject = (projectId) => {
+    return projects.find(project => project.id === projectId);
+}
+
 //Return all projects in project array
 const getAllProjects = () => {
     return projects;
 };
 
+//Add todo to project function
+const addTodo = (title, description, dueDate, priority, notes, projectId) => {
+    const project = getProject(projectId);
+    const todo =  new Todo(title, description, dueDate, priority, notes);
 
+    project.addTodo(todo);
+};
 
+const getAllTodos = (projectId) => {
 
+};
 
 export default {
     initialize,
     addProject,
     getAllProjects,
+    getProject,
     deleteProject,
+    addTodo,
 
 };

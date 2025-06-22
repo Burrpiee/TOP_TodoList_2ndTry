@@ -54,7 +54,7 @@ const setupEventListeners = () => {
         //If values are not empty, add todo to project
 
         if (title && dueDate !== '') {
-          //add todo to proj   
+            TodoManager.addTodo(title, description, dueDate, priority, notes, projectId);
         }
     });
 };
@@ -84,12 +84,35 @@ const renderProjects = () => {
                     renderProjects();
                 }
             }
+
+            else {
+                renderTodos(project.id);
+
+                //Add active class to show active list item
+                document.querySelectorAll('.project-list-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                projectItem.classList.add('active');
+            }
         });
     });
 };
 
-const renderTodos = () => {
+//Rendering todos for specific project
+const renderTodos = (projectId) => {
+    const project = TodoManager.getProject(projectId);
 
+    if (!project) return;
+
+    dom.projectTitle.textContent = project.name;
+
+    //Clear todos list
+    dom.todosList.innerHTML = '';
+
+    if (project.todos.length === 0) {
+        //Placeholder to state there is no todos
+        
+    }
 };
 
 

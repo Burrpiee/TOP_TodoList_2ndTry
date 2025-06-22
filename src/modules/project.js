@@ -11,12 +11,13 @@ class Project {
     }
 
     addTodo(todo) {
-        this.todos.push(todo)
+        this.todos.push(todo);
     }
 
     removeTodo(todoId) {
         this.todos = this.todos.filter(todo => todo.id !== todoId);
     }
+    
 }
 
 export default Project;
