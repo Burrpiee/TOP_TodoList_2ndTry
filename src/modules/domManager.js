@@ -13,6 +13,7 @@ const cacheDomElements = () => {
     dom.addTodoForm = document.getElementById("add-todo-form");
     dom.todosList = document.getElementById("todo-list");
     dom.projectTitle = document.getElementById("current-project-title");
+    dom.projectSelect = document.getElementById("todo-project");
 }
 
 
@@ -35,10 +36,9 @@ const setupEventListeners = () => {
 
         if (projectName !== '') {
             TodoManager.addProject(projectName, projectDesc);
+            renderProjects();
+            dom.addProjectForm.reset();
         }
-
-        renderProjects();
-        dom.addProjectForm.reset();
     });
 
     //Submission of Add Todo Form
@@ -52,9 +52,11 @@ const setupEventListeners = () => {
         const projectId = document.getElementById("todo-project").value;
 
         //If values are not empty, add todo to project
-
         if (title && dueDate !== '') {
             TodoManager.addTodo(title, description, dueDate, priority, notes, projectId);
+            renderTodos(projectId);
+            dom.addProjectForm.reset();
+            document.getElementById('add-todo-container').classList.add('hidden');
         }
     });
 };
@@ -70,7 +72,7 @@ const renderProjects = () => {
         projectItem.classList.add('project-list-item');
         projectItem.dataset.projectId = project.id;
 
-        //Create html item
+        //Create project items
         projectItem.innerHTML = `
         <div>${project.name}</div>
         <button class = "project-delete-button">x</button>`;
@@ -95,6 +97,14 @@ const renderProjects = () => {
                 projectItem.classList.add('active');
             }
         });
+
+        //Add project to add todo form's dropdown list
+        const option = document.createElement('option');
+        option.value = project.id;
+        option.textContent = project.name;
+        dom.projectSelect.appendChild(option);
+        //Choose the first project if no projects were previosly selected
+
     });
 };
 
@@ -111,8 +121,33 @@ const renderTodos = (projectId) => {
 
     if (project.todos.length === 0) {
         //Placeholder to state there is no todos
-        
+        dom.todosList.innerHTML = `
+        <div class = "empty-todo-list">
+            <div>There are currently no todos.</div>
+            <div>Click the '+' button on top to add one!</div>
+        </div>`;
+
+        return;
     }
+
+    project.todos.forEach (todo => {
+        const todoItem = document.createElement("div");
+        todoItem.classList.add("todo-item");
+        todoItem.dataset.id = todo.id;
+
+
+        todoItem.innerHTML = `
+        <label></label>
+        <div>${todo.title}</div>
+        <div class = "todo-actions">
+            <button>Edit</button>
+            <button>Delete</button>
+        </div>`
+
+        dom.todosList.appendChild(todoItem);
+    });
+
+
 };
 
 
@@ -121,4 +156,6 @@ export default {
     init,
     setupEventListeners,
     renderProjects,
+    renderTodos,
+
 };

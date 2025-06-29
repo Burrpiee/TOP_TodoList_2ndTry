@@ -35,12 +35,13 @@ const getAllProjects = () => {
     return projects;
 };
 
-//Add todo to project function
+//Add todo to project
 const addTodo = (title, description, dueDate, priority, notes, projectId) => {
     const project = getProject(projectId);
-    const todo =  new Todo(title, description, dueDate, priority, notes);
+    const todo =  new Todo(title, description, dueDate, priority, notes, projectId);
 
     project.addTodo(todo);
+    return todo;
 };
 
 const getAllTodos = (projectId) => {
@@ -54,5 +55,7 @@ export default {
     getProject,
     deleteProject,
     addTodo,
+    getAllTodos,
+    
 
 };
