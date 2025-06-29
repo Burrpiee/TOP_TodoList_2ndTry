@@ -55,7 +55,7 @@ const setupEventListeners = () => {
         if (title && dueDate !== '') {
             TodoManager.addTodo(title, description, dueDate, priority, notes, projectId);
             renderTodos(projectId);
-            dom.addProjectForm.reset();
+            dom.addTodoForm.reset();
             document.getElementById('add-todo-container').classList.add('hidden');
         }
     });
@@ -137,8 +137,15 @@ const renderTodos = (projectId) => {
 
 
         todoItem.innerHTML = `
-        <label></label>
-        <div>${todo.title}</div>
+        <div class = "todo-checkbox">
+            <input type = "checkbox" id = "todo-${todo.id}"> 
+            <label for = "todo-${todo.id}">
+                <span class = "checkbox-circle"></span>
+            </label>
+        </div>
+        <div class = "todo-content">
+            <h3>${todo.title}</h3>
+        </div>
         <div class = "todo-actions">
             <button>Edit</button>
             <button>Delete</button>
