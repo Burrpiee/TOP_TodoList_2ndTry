@@ -145,6 +145,7 @@ const renderTodos = (projectId) => {
         </div>
         <div class = "todo-content">
             <h3>${todo.title}</h3>
+            <div>${todo.dueDate}</div>
         </div>
         <div class = "todo-actions">
             <button>Edit</button>
