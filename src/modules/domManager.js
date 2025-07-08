@@ -1,6 +1,7 @@
 import Project from "./project";
 import Todo from "./todo";
 import TodoManager from "./todoManager";
+import { format } from 'date-fns';
 //DOM manager
 
 //Private variable for dom elements
@@ -59,13 +60,26 @@ const setupEventListeners = () => {
             document.getElementById('add-todo-container').classList.add('hidden');
         }
     });
+
+    //Todo item actions
+    dom.todosList.addEventListener('click', (e) => {
+        const target = e.target;
+
+        //If checkbox is clicked
+        if(target.matches()) {
+
+        }
+
+    });
 };
 
 //Rendering of projects in projects list
 const renderProjects = () => {
     const projects = TodoManager.getAllProjects();
 
-    dom.projectsList.innerHTML = ''; //Clear current list
+    //Clear project lists
+    dom.projectsList.innerHTML = '';
+    dom.projectSelect.innerHTML = ''; 
 
     projects.forEach(project => {
         const projectItem = document.createElement('li');
@@ -135,29 +149,30 @@ const renderTodos = (projectId) => {
         todoItem.classList.add("todo-item");
         todoItem.dataset.id = todo.id;
 
+        //Formatting of date using datefns
+        const dueDate = new Date(todo.dueDate);
+        const formattedDate = format(dueDate, 'dd-MM-yyyy');
+
 
         todoItem.innerHTML = `
         <div class = "todo-checkbox">
-            <input type = "checkbox" id = "todo-${todo.id}"> 
+            <input type = "checkbox" id = "todo-${todo.id}" ${todo.complete ? 'checked' : ''}> 
             <label for = "todo-${todo.id}">
                 <span class = "checkbox-circle"></span>
             </label>
         </div>
         <div class = "todo-content">
-            <h3>${todo.title}</h3>
-            <div>${todo.dueDate}</div>
+            <h3 class = "todo-title">${todo.title}</h3>
+            <div class = "todo-duedate">${formattedDate}</div>
         </div>
         <div class = "todo-actions">
-            <button>Edit</button>
-            <button>Delete</button>
+            <button class = "todo-edit" data-action = "edit" data-todoId = "${todo.id}">Edit</button>
+            <button class = "todo-delete data-action = "delete" data-todoId = "${todo.id}">Delete</button>
         </div>`
 
         dom.todosList.appendChild(todoItem);
     });
-
-
 };
-
 
 
 export default {
